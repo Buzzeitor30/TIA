@@ -76,8 +76,8 @@
 	(bind ?identificador (read))
 	;Creamos los hechos
 	(assert (vehiculo (id ?identificador) (distancia-crisp ?Rdist) (velocidad-crisp ?Rvel) (fuerza-de-aceleracion-crisp-momentum 0.0) (fuerza-de-aceleracion-crisp-maximum 0.0) (presion-freno-crisp-momentum 0.0) (presion-freno-crisp-maximum 0.0)))
-	(fuzzify dis_rel ?Rdist 0)
-	(fuzzify vel_rel ?Rvel 0)
+	(fuzzify dis_rel ?Rdist 0.0)
+	(fuzzify vel_rel ?Rvel 0.0)
 )
 
 (defrule alejando_cerca
@@ -154,17 +154,19 @@
 )
 ;------------PRESENTAR RESULTADOS--------
 (defrule res
-	?c <- (vehiculo (id ?identificador) (distancia-crisp ?Rdist) (velocidad-crisp ?Rvel) (fuerza-de-aceleracion-crisp-momentum ?famo) (fuerza-de-aceleracion-crisp-maximum ?famax) (presion-freno-crisp-momentum ?pfmom) (presion-freno-crisp-maximum ?pfmax))
-	(fuerza_acel ?f)
-	(pre_fre ?p)
-	=>
-	(bind ?fmax (maximum-defuzzify ?f))
-	(bind ?fmom (moment-defuzzify ?f))
-	(bind ?pmax (maximum-defuzzify ?p))
-	(bind ?pmom (moment-defuzzify ?p))
-	(printout t"Aceleracion maximum: "?fmax crlf)
-	(printout t"Freno maximum: "?pmax crlf)
-	(printout t"Aceleracion moment: "?fmom crlf)
-	(printout t"Freno moment: "?pmom crlf)
-	(modify ?c (fuerza-de-aceleracion-crisp-momentum ?fmom) (fuerza-de-aceleracion-crisp-maximum ?fmax) (presion-freno-crisp-momentum ?pmom) (presion-freno-crisp-maximum ?pmax))
-)
+    (declare (salience -1))
+    ?c <- (vehiculo (id ?identificador) (distancia-crisp ?Rdist) (velocidad-crisp ?Rvel) (fuerza-de-aceleracion-crisp-momentum ?famo) (fuerza-de-aceleracion-crisp-maximum ?famax) (presion-freno-crisp-momentum ?pfmom) (presion-freno-crisp-maximum ?pfmax))
+    (fuerza_acel ?f)
+    (pre_fre ?p)
+    =>
+    (bind ?fmax (maximum-defuzzify ?f))
+    (bind ?fmom (moment-defuzzify ?f))
+    (bind ?pmax (maximum-defuzzify ?p))
+    (bind ?pmom (moment-defuzzify ?p))
+    (printout t"Aceleracion maximum: "?fmax crlf)
+    (printout t"Freno maximum: "?pmax crlf)
+    (printout t"Aceleracion moment: "?fmom crlf)
+    (printout t"Freno moment: "?pmom crlf)
+    (modify ?c (fuerza-de-aceleracion-crisp-momentum ?fmom) (fuerza-de-aceleracion-crisp-maximum ?fmax) (presion-freno-crisp-momentum ?pmom) (presion-freno-crisp-maximum ?pmax))
+    (halt)
+    )

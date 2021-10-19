@@ -1,4 +1,4 @@
-(define (problem ZTRAVEL-3-7)
+(define (problem problemas)
 (:domain zeno-travel)
 (:objects
 	plane1 - aircraft

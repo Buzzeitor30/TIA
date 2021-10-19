@@ -6,7 +6,6 @@
 ;(entre todos), pero se puede ampliar 20km pagando 20€ (solo incrementos de 20). 
 
 (define (domain mercancias) ;nombre del dominio
-<<<<<<< HEAD
 (:requirements :durative-actions :typing :fluents :negative-preconditions :equality)
 (:types pedido camion furgoneta zle intercambiador neutra - object) ; existen camiones, furgonetas, pedidos, ZLE, intercambiador
 (:predicates (at ?v - (either camion furgoneta pedido) ?z - (either zle intercambiador neutra))
@@ -15,24 +14,6 @@
 
 (:functions 
             (distance ?z1 - (either zle intercambiador neutra) ?z2 - (either zle intercambiador neutra))
-=======
-(:requirements :durative-actions :typing :fluents :negative-preconditions)
-(:types pedido zona vehiculo - object) ; existen camiones, furgonetas, pedidos, ZLE, intercambiador
-(:predicates (at ?v - vehiculo ?z - zona)
-             ;Predicados para distinguir el tipo de zona
-             (es_zle ?z - zona)
-             (es_intercambiador ?z - zona)
-             ;Predicados para el tipo de vehiculo
-             (es_furgo ?v - vehiculo)
-             (es_camion ?v - vehiculo)
-             ;Predicados, el primero para saber donde se encuentra el pedido y el segundo para saber que vehiculo lo transporta
-             (at_pedido ?p - pedido ?z - zona)
-             (en ?p - pedido ?v - vehiculo)
-)
-
-(:functions 
-            (distance ?z1 - zona ?z2 - zona)
->>>>>>> 461dff6f8ce793c6b306e17d221c1e17cec94e31
 	    (kilometraje)
 	    (dinero-extra)
             (presupuesto)
@@ -59,11 +40,6 @@
 :duration (= ?duration (/ (distance ?z1 ?z2) 4))
 ;El camion tiene que estar al principio en z1 y z2 no puede ser ZLE
 :condition (and (at start(at ?v ?z1))
-<<<<<<< HEAD
-=======
-                (over all (es_camion ?v))
-                (over all (not (es_zle ?z2)))
->>>>>>> 461dff6f8ce793c6b306e17d221c1e17cec94e31
 		(at start (>= (kilometraje) (distance ?z1 ?z2)))
         )
 ;Al acabar el camion deja de estar en z1 y se va a z2
@@ -74,26 +50,15 @@
 )
 
 (:durative-action intercambiar
-<<<<<<< HEAD
 :parameters (?v1 ?v2 - (either camion furgoneta) ?z - (either zle intercambiador neutra) ?p - pedido)
-=======
-:parameters (?v1 ?v2 - vehiculo ?z - zona ?p - pedido)
->>>>>>> 461dff6f8ce793c6b306e17d221c1e17cec94e31
 :duration (= ?duration 3)
 :condition (and (over all (at ?v1 ?z))
 		(over all (at ?v2 ?z))
 		(at start (en ?p ?v1))
-<<<<<<< HEAD
 )
 :effect (and    (at start (not (en ?p ?v1)))
                 (at end (en ?p ?v2))
 		
-=======
-		(over all (es_intercambiador ?z))
-)
-:effect (and   (at end (en ?p ?v2))
-		(at end (not (en ?p ?v1)))
->>>>>>> 461dff6f8ce793c6b306e17d221c1e17cec94e31
 )
 )
 
@@ -130,11 +95,7 @@
         )
 ;El pedido deja de estar en el camion y llega a su destino
 :effect (and (at start (not (en ?p ?v)))
-<<<<<<< HEAD
              (at end (at ?p ?z1))    
-=======
-             (at end (at_pedido ?p ?z1))    
->>>>>>> 461dff6f8ce793c6b306e17d221c1e17cec94e31
 )
 )
 

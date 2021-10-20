@@ -35,7 +35,7 @@
 
 (:durative-action transportar-camion
 ;Parametros => vehiculo v y zonas z1 z2
-:parameters (?v - camion ?z1 - (either zle intercambiador neutra) ?z2 - (either zle intercambiador neutra))
+:parameters (?v - camion ?z1 - (either intercambiador neutra) ?z2 - (either intercambiador neutra))
 ;Para el camion el tiempo es dist/4
 :duration (= ?duration (/ (distance ?z1 ?z2) 4))
 ;El camion tiene que estar al principio en z1 y z2 no puede ser ZLE

@@ -1,0 +1,34 @@
+
+; Version LPG-td-1.0
+; Seed 53443308
+; Command line: /cygdrive/d/TIA/Prac2/lpg-td -o .\mercancias\dominio.pddl -f .\mercancias\problema.pddl -n 7 
+; Problem problema.pddl
+; Time 0.05
+; Search time 0.05
+; Parsing time 0.00
+; Mutex time 0.00
+; Quality 63.40
+
+
+Time 0.05
+
+0.0003:   (RECOGER F1 B P2) [1.0000]
+0.0005:   (TRANSPORTAR-CAMION C1 C F) [7.5000]
+1.0007:   (TRANSPORTAR-FURGO F1 B E) [20.0000]
+7.5010:   (RECOGER C1 F P3) [1.0000]
+8.5013:   (TRANSPORTAR-CAMION C1 F D) [2.5000]
+11.0015:   (ENTREGAR C1 D P3) [2.0000]
+11.0017:   (RECOGER C1 D P4) [1.0000]
+13.0020:   (TRANSPORTAR-CAMION C1 D E) [7.5000]
+20.5023:   (ENTREGAR C1 E P4) [2.0000]
+21.0025:   (ENTREGAR F1 E P2) [2.0000]
+21.0028:   (RECOGER F1 E P5) [1.0000]
+23.0030:   (TRANSPORTAR-FURGO F1 E A) [52.0000]
+75.0033:   (ENTREGAR F1 A P5) [2.0000]
+0.0035:   (TRANSPORTAR-FURGO F2 B A) [4.0000]
+4.0037:   (RECOGER F2 A P1) [1.0000]
+5.0040:   (TRANSPORTAR-FURGO F2 A D) [10.0000]
+15.0042:   (TRANSPORTAR-FURGO F2 D F) [10.0000]
+25.0045:   (ENTREGAR F2 F P1) [2.0000]
+
+

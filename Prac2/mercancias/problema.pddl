@@ -1,4 +1,4 @@
-(define (problem problem_name) (:domain mercancias)
+(define (problem entrega) (:domain mercancias)
 (:objects
 c1 - camion
 c2 - camion
@@ -18,6 +18,7 @@ p5 - pedido
 )
 
 (:init
+
     ;Vehiculos
     (at c1 C)
     (at c2 C)

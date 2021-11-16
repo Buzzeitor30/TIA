@@ -24,22 +24,20 @@ constraint forall(i in 1..N, j in 1..N where i!=j)(
                   y[j] >= y[i] + alto[i] );
 
 constraint w==h;
-
-% APARTADO F)constraint (x[3] + ancho[3] = x[4] /\ y[3] + alto[3]= y[4]);
 %ROTAR EL ULTIMO RECTANGULO
-constraint forall(i in 1..N-1)(
+%constraint forall(i in 1..N-1)(
 
                   %RECTANGULO NORMAL
-                  (x[N] >= x[i] + ancho[i] \/
-                 x[i] >= x[N] + ancho[N] \/
-                 y[i] >= y[N] + alto[N] \/
-                y[N] >= y[i] + alto[i]) /\
+%                  (x[N] >= x[i] + ancho[i] \/
+%                 x[i] >= x[N] + ancho[N] \/
+%                 y[i] >= y[N] + alto[N] \/
+%                y[N] >= y[i] + alto[i]) /\
                   %RECTANGULO ROTADO
-               (x[i] >= x[N] + alto[N] \/
-              x[N] >= x[i] + ancho[i] \/
-             y[N] >= y[i] + alto[i] \/
-            y[i] >= y[N] + ancho[N])
-           );
+%               (x[i] >= x[N] + alto[N] \/
+%              x[N] >= x[i] + ancho[i] \/
+%             y[N] >= y[i] + alto[i] \/
+%            y[i] >= y[N] + ancho[N])
+%           );
 
 %CABE DENTRO DEL RECTANGULO POR ANCHURA
 constraint forall(i in 1..N) (x[i] + ancho[i] <= w);
@@ -49,6 +47,6 @@ constraint forall(i in 1..N) (y[i] + alto[i] <= h);
 %CABE DENTRO DEL RECTANGULO ULTIMO
 %constraint ((x[N]+ancho[N] <= w /\ y[N] + alto[N] <= h) \/ (x[N] + alto[N] <= w /\ y[N] + ancho[N] <= h));
 %RESOLVER
-solve minimize h;
+solve minimize w*h;
 
 output["Altura: ", show(h),"\nAnchura:",show(w),"\nSuperfície mínima: ",show(w*h), "\nCoordenadas x: ",show(x),"\nCoordenadas y: ", show(y)];
